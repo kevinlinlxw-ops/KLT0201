@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Coffee Futures Dashboard</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 24px;
+        color: #1f2937;
+      }
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 24px;
+      }
+      h1 {
+        font-size: 24px;
+        margin: 0;
+      }
+      .meta {
+        font-size: 14px;
+        color: #6b7280;
+      }
+      .button {
+        padding: 8px 14px;
+        background: #2563eb;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 6px;
+        font-size: 14px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 32px;
+      }
+      th,
+      td {
+        border: 1px solid #e5e7eb;
+        padding: 8px 10px;
+        font-size: 14px;
+        text-align: left;
+      }
+      th {
+        background: #f3f4f6;
+      }
+      section {
+        margin-bottom: 32px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div>
+        <h1>Coffee Futures Dashboard</h1>
+        <div class="meta">Generated at {{ generated_at }}</div>
+      </div>
+      <a class="button" href="/export.xlsx">Download Excel</a>
+    </header>
+
+    <section>
+      <h2>Contract Quotes</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Commodity</th>
+            <th>Symbol</th>
+            <th>Close</th>
+            <th>Open Interest</th>
+            <th>Last Trade Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in quotes %}
+          <tr>
+            <td>{{ row.commodity }}</td>
+            <td>{{ row.symbol }}</td>
+            <td>{{ row.close }}</td>
+            <td>{{ row.open_interest }}</td>
+            <td>{{ row.last_trade_date }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Contract Spreads</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Commodity</th>
+            <th>From</th>
+            <th>To</th>
+            <th>Close Spread</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in spreads %}
+          <tr>
+            <td>{{ row.commodity }}</td>
+            <td>{{ row.from_symbol }}</td>
+            <td>{{ row.to_symbol }}</td>
+            <td>{{ row.close_spread }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </section>
+  </body>
+</html>

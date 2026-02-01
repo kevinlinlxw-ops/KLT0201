@@ -1,0 +1,29 @@
+commodities:
+  arabica:
+    description: ICE Arabica Coffee (KC)
+    symbol_root: KC
+    month_codes:
+      - H
+      - K
+      - N
+      - U
+      - Z
+    exchange_suffix: .NYB
+  robusta:
+    description: ICE Robusta Coffee (RC)
+    symbol_root: RC
+    month_codes:
+      - F
+      - H
+      - K
+      - N
+      - U
+      - X
+    exchange_suffix: .NYB
+output:
+  directory: output
+  filename_prefix: coffee_futures
+  formats:
+    - csv
+    - json
+    - xlsx
